@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 
 const name = "helloWorld420"
-
 function App() {
   return (
     <div className="App">
