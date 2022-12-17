@@ -24,3 +24,6 @@ yarn-error.log*
 
 # lock-json
 package-lock.json
+
+# idea
+/.idea
