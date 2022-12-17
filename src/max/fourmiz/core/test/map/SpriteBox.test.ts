@@ -1,5 +1,5 @@
-import {MyMapClass} from "../../core/map/MyMapClass";
-import {SpriteBox} from "../../core/map/SpriteBox";
+import {MyMapClass} from "../../map/MyMapClass";
+import {SpriteBox} from "../../map/SpriteBox";
 
 test('sprite-box in map', () => {
 
@@ -118,7 +118,7 @@ test('sprite-box out right map', () => {
     expect(mySpriteBox.isOnMap(myMap.dimension)).toEqual(valueExpected);
 });
 
-test('sprite-box out top map', () => {
+test('sprite-box feet out top map', () => {
 
     // --------
     // VALUES :

@@ -1,4 +1,4 @@
-import {MyMapClass} from "../../core/map/MyMapClass";
+import {MyMapClass} from "../../map/MyMapClass";
 
 export const myMapObject = new MyMapClass(
     8,
