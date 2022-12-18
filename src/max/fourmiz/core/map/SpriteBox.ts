@@ -9,14 +9,11 @@ export interface SpriteBoxConstructor {
 }
 
 export class SpriteBox {
-    widthScreenPercent: number
-    heightScreenPercent: number
 
     pointTopLeft: Point
     private pointBuffer: Point = new Point(0, 0)
-    // todo make getPoint() using pointBuffer and referring to pointTopLeft =>
-    pointBottomLeft: Point
-    pointBottomRight: Point
+    widthScreenPercent: number
+    heightScreenPercent: number
 
     constructor(spriteBoxConstructor: SpriteBoxConstructor = {
         positionLeftX: 0,
@@ -25,18 +22,12 @@ export class SpriteBox {
         heightScreenPercent: 0
     }) {
         const positionLeftX = spriteBoxConstructor.positionLeftX
-        const positionRightX = spriteBoxConstructor.positionLeftX + spriteBoxConstructor.widthScreenPercent
-        const positionBottomY = spriteBoxConstructor.positionBottomY
         const positionTopY = spriteBoxConstructor.positionBottomY - spriteBoxConstructor.heightScreenPercent
 
         this.pointTopLeft = new Point(positionLeftX, positionTopY)
-        // this.pointTopRight = new Point(positionRightX, positionTopY)
-        this.pointBottomLeft = new Point(positionLeftX, positionBottomY)
-        this.pointBottomRight = new Point(positionRightX, positionBottomY)
 
         this.widthScreenPercent = spriteBoxConstructor.widthScreenPercent
         this.heightScreenPercent = spriteBoxConstructor.heightScreenPercent
-
     }
 
     getPointTopRight(): Point {
@@ -45,35 +36,38 @@ export class SpriteBox {
         return this.pointBuffer
     }
 
+    getPointBottomLeft(): Point {
+        this.pointBuffer.x = this.pointTopLeft.x
+        this.pointBuffer.y = this.pointTopLeft.y + this.heightScreenPercent
+        return this.pointBuffer
+    }
+    getPointBottomRight(): Point {
+        this.pointBuffer.x = this.pointTopLeft.x + this.widthScreenPercent
+        this.pointBuffer.y = this.pointTopLeft.y + this.heightScreenPercent
+        return this.pointBuffer
+    }
+
     isOnMap(mapDimension: MyMapDimension): boolean {
         return !(this.pointTopLeft.x < 0
             || this.getPointTopRight().x > mapDimension.sizeXScreenPercent
-            || this.pointBottomLeft.y < 0
-            || this.pointBottomLeft.y > mapDimension.sizeYScreenPercent);
+            || this.getPointBottomLeft().y < 0
+            || this.getPointBottomLeft().y > mapDimension.sizeYScreenPercent);
     }
 
     moveToLeft(x: number) {
         this.pointTopLeft.x -= x
-        this.pointBottomLeft.x -= x
-        this.pointBottomRight.x -= x
     }
 
     moveToRight(x: number) {
         this.pointTopLeft.x += x
-        this.pointBottomLeft.x += x
-        this.pointBottomRight.x += x
     }
 
     moveToUp(y: number) {
         this.pointTopLeft.y -= y
-        this.pointBottomLeft.y -= y
-        this.pointBottomRight.y -= y
     }
 
     moveToDown(y: number) {
         this.pointTopLeft.y += y
-        this.pointBottomLeft.y += y
-        this.pointBottomRight.y += y
     }
 
 }

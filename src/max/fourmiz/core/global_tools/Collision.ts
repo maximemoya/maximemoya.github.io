@@ -21,7 +21,7 @@ export abstract class Collision {
             }
 
             const topPointLocationOnY = reference.pointTopLeft
-                .locationOnYBetween2Points(compared.pointTopLeft, compared.pointBottomLeft)
+                .locationOnYBetween2Points(compared.pointTopLeft, compared.getPointBottomLeft())
 
             if (topPointLocationOnY === PointLocation.Down){
                 return false
@@ -29,8 +29,8 @@ export abstract class Collision {
 
             else {
 
-                const bottomPointLocationOnY = reference.pointBottomLeft
-                    .locationOnYBetween2Points(compared.pointTopLeft, compared.pointBottomLeft)
+                const bottomPointLocationOnY = reference.getPointBottomLeft()
+                    .locationOnYBetween2Points(compared.pointTopLeft, compared.getPointBottomLeft())
 
                 if (bottomPointLocationOnY === PointLocation.Up){
                     return false

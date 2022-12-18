@@ -37,19 +37,19 @@ test('two spriteBoxes do not collide by moving around', () => {
     // ------
 
     for (let i = 0; i < 5; i++) {
-        spriteBoxA.moveToRight(1)
+        spriteBoxA.pointTopLeft.x += 1
         expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(false);
     }
     for (let i = 0; i < 6; i++) {
-        spriteBoxA.moveToDown(1)
+        spriteBoxA.pointTopLeft.y += 1
         expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(false);
     }
     for (let i = 0; i < 5; i++) {
-        spriteBoxA.moveToLeft(1)
+        spriteBoxA.pointTopLeft.x -= 1
         expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(false);
     }
     for (let i = 0; i < 4; i++) {
-        spriteBoxA.moveToUp(1)
+        spriteBoxA.pointTopLeft.y -= 1
         expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(false);
     }
 
@@ -93,15 +93,15 @@ test('two spriteBoxes collision on A bottom B top by moving A', () => {
     // ------
 
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(false);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(true);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(true);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(true);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(true);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(false);
 
 });
@@ -145,15 +145,15 @@ test('two spriteBoxes collision on A top B bottom by moving A', () => {
     // ------
 
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(false);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(true);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(true);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(true);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(true);
-    spriteBoxA.moveToRight(1)
+    spriteBoxA.pointTopLeft.x += 1
     expect(Collision.isColliding(spriteBoxA,spriteBoxB)).toEqual(false);
 
 });
