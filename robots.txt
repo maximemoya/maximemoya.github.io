@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /private/
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+Allow: /$
+Allow: /blog/
+
+Sitemap: https://www.example.com/sitemap.xml
