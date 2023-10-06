@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MaximePage</title>
-    <link rel="stylesheet" href="beautifulButton.css">
-    <link rel="stylesheet" href="../styles/linkStyle.css">
 
+    <title>MaximePage</title>
+
+    <link rel="stylesheet" href="../styles/centeredPageStyle.css">
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script> -->
+    <script src="passwordTransformer.js"></script>
 </head>
 
 <body>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script> -->
-    <script src="passwordTransformer.js"></script>
-    <div>
+
+    <div class="container">
+        <br>
+        <h3>
+            <a href="../index.html">Go to IndexPage --> </a>
+        </h3>
+    </div>
+    <div class="container">
+        <h1>
+            Welcome to MaxPage
+        </h1>
+    </div>
+    <div class="container">
+        <h2>Password Transformer :</h2>
+        <label for="keyPass">Enter a key:</label>
+        <br>
+        <input type="password" id="keyPass" name="keyPass" required>
+        <br>
+        <br>
+        <label for="password">Enter word to convert into a strong password:</label>
+        <br>
+        <input type="text" id="password" name="password" required>
+        <br>
+        <br>
+        <button type="button" class="beautiful-button" onclick="changePassword()">TRANSFORM Password</button>
+        <p>(To see how it works, press F12 and go to the console &#x1F600;)</p>
+        <h3>
+            <a href="https://www.passwordmonster.com/" target="_blank"> --> YOU CAN TEST MY STRENGTH HERE <-- </a>
+        </h3>
+    </div>
+
+    <!-- <div>
+        <br>
         <h3>
             <a href="../index.html">Go to IndexPage</a>
         </h3>
@@ -37,7 +70,7 @@
         <h3>
             <a href="https://www.passwordmonster.com/" target="_blank">YOU CAN TEST MY STRENGTH HERE </a>
         </h3>
-    </div>
+    </div> -->
 </body>
 
 </html>

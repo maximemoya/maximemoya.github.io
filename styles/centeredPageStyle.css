@@ -1,0 +1,98 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(215, 203, 188);
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+input[type="password"] {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 500px) {
+
+    /* Adjust the breakpoint as needed */
+    input[type="text"] {
+        width: calc(65ch + 20px);
+        /* Set the width based on character count */
+    }
+}
+
+
+
+/* body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(236, 210, 174);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+} */
+
+/* input[type="password"],
+input[type="text"] {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+} */
+
+.beautiful-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #3578d6;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.beautiful-button:hover {
+    background-color: #1cd519;
+}
+
+a:link,
+a:visited {
+    color: #3578d6;
+    /* Default link color */
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    color: #20c51d;
+    /* Bright link color when hovered or active */
+}
