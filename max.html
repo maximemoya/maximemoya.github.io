@@ -3,6 +3,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaxPage</title>
+    <script>
+
+        async function sha512(str) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(str);
+        const hashBuffer = await crypto.subtle.digest("SHA-512", data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, "0")).join("");
+        return hashHex;
+        }
+
+        const array = ["aL1$", "2T*c", "Xb3%", "$Sa2", "1$Xb", "3%aL", "*c2T", "1$aL", "6Fd*","d*2T"]
+        function changePassword() {
+            var passwordField = document.getElementById("password");
+            var newPassword = ""
+            for (let index = 0; index < passwordField.value.length; index++) {
+                newPassword += array[passwordField.value.charCodeAt(index) % array.length];
+            }
+            const inputString = newPassword;
+            console.log("text: ",passwordField.value)
+            console.log("arrayChange: ", inputString)
+            sha512(inputString)
+            .then(hash => {
+                passwordField.value = hash.slice(0,10) + array[newPassword.charCodeAt(0) % array.length] + hash.slice(10,60)
+                console.log("resultCode: ", passwordField.value)
+            })
+            .catch(error => console.error(error));
+            
+        }
+    </script>
 </head>
 <body>
     <div>
@@ -11,6 +41,15 @@
     <div>
         go to : 
         <a href="index.html">IndexPage</a>
+    </div>
+    <div>
+        <h1>Password Change Form</h1>
+        <form>
+            <label for="password">Enter Password:</label>
+            <input type="text" id="password" name="password" required">
+            <br>
+            <button type="button" onclick="changePassword()">Change Password</button>
+        </form>
     </div>
 </body>
 </html>
