@@ -2,7 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MaxPage</title>
+    <title>MaximePage</title>
+    <link rel="stylesheet" href="beautifulButton.css">
 </head>
 <body>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script> -->
@@ -105,24 +106,28 @@
             var passwordField = document.getElementById("password");
             
             updateArrayV2(keyText).then(_ => {
-                console.log("generated arrayV2", arrayV2) 
                 
                 var newPassword = ""
                 for (let index = 0; index < passwordField.value.length; index++) {
                     newPassword += passwordField.value[index] + arrayV2[passwordField.value.charCodeAt(index) % arrayV2.length];
                 }
                 const inputString = newPassword;
-                // console.log("key: ", keyField.value)
-                // console.log("initial-password: ", passwordField.value)
-                // console.log("array used: ", array)
-                // console.log("text mixed with array: ", inputString)
+
+                // CONSOLE:
+                console.log("key: ", keyField.value)
+                console.log("keyArray created according the key: ", arrayV2)
+                console.log("initial-password: ", passwordField.value)
+                console.log("text mixed with keyArray: ", inputString)
+
                 sha512(inputString)
                 .then(hash => {
                     const salt = (arrayV2[newPassword.charCodeAt(0) % arrayV2.length] !== undefined)? arrayV2[newPassword.charCodeAt(0) % arrayV2.length] : "Emp$y"
                     passwordField.value = hash.slice(0,10) + salt + hash.slice(10,60)
-                    // console.log("hashresult: ", hash)
-                    // console.log(`final result by truncate hash and introducing '${salt}'`)
-                    // console.log("final result: ", passwordField.value)
+                    
+                    // CONSOLE:
+                    console.log("hashresult: ", hash)
+                    console.log(`introducing '${salt}' in truncate hash for final result`)
+                    console.log("final result: ", passwordField.value)
                 })
                 .catch(error => console.error(error));  
             })
@@ -131,7 +136,7 @@
     </script>
     <div>
         <h3>
-            <a href="index.html">go to IndexPage</a>
+            <a href="index.html">Go to IndexPage</a>
         </h3>
     </div>
     <div>
@@ -143,14 +148,18 @@
         <h2>Password Transformer :</h2>
         <!-- <form> -->
         <label for="keyPass">Enter a key:</label>
-        <input type="text" id="keyPass" name="keyPass" required size="20">
+        <input type="password" id="keyPass" name="keyPass" required size="20">
         <br>
         <br>
-        <label for="password">Enter Password:</label>
+        <label for="password">Enter word to convert in strong password:</label>
         <input type="text" id="password" name="password" required size="80">
         <br>
         <br>
-        <button type="button" onclick="changePassword()">TRANSFORM Password</button>
+        <button type="button" class="beautiful-button" onclick="changePassword()">TRANSFORM Password</button>
+        <p>(to see how it works, press F12 and go to console &#x1F600;)</p>
+        <h3>
+            <a href="https://www.passwordmonster.com/" target="_blank">YOU CAN TEST MY STRENGTH HERE </a>
+        </h3>
         <!-- </form> -->
     </div>
 </body>
