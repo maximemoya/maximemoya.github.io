@@ -19,7 +19,7 @@
             var passwordField = document.getElementById("password");
             var newPassword = ""
             for (let index = 0; index < passwordField.value.length; index++) {
-                newPassword += array[passwordField.value.charCodeAt(index) % array.length];
+                newPassword += passwordField.value[index] + array[passwordField.value.charCodeAt(index) % array.length];
             }
             const inputString = newPassword;
             console.log("text: ",passwordField.value)
