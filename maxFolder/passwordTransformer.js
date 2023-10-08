@@ -115,7 +115,8 @@ function changePassword() {
                 console.log(`introducing a salt = '${salt}' in truncate hash for final result`)
                 console.log(" ")
             })
-            .catch(error => console.error(error));
+            .catch(error => console.error(error))
+
     })
 
 }
