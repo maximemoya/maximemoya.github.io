@@ -5,7 +5,8 @@ body {
     justify-content: center;
     /* height: 100vh; */
     text-align: center;
-    background-color: rgb(195, 217, 237);
+    /* background-color: rgb(195, 217, 237); */
+    background-color: rgb(238, 17, 17);
 }
 
 .myRectangle {
