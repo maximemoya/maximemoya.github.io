@@ -13,28 +13,29 @@
 </head>
 
 <body>
-
     <div class="container">
         <br>
         <h3>
             <a href="../index.html">Go to IndexPage --> </a>
         </h3>
-    </div>
-    <div class="container">
         <h1>
             Welcome to MaxPage
         </h1>
-    </div>
-    <div class="container">
-        <h2>Password Transformer :</h2>
-        <label for="keyPass">Enter a key:</label>
+        <h3>Password Transformer :</h3>
+        <label for="keyPass">Enter a secret-key:</label>
         <br>
-        <input type="password" id="keyPass" name="keyPass" required>
+        <input type="password" id="keyPass" name="keyPass" required onclick="selectAllText(this)">
         <br>
         <br>
-        <label for="password">Enter word to convert into a strong password:</label>
+        <label for="password">Enter word to transform into a strong password:</label>
         <br>
-        <input type="text" id="password" name="password" required>
+        <input type="text" id="password" name="password" required onclick="selectAllText(this)">
+        <br>
+        <br>
+        <label for="countNumber">Password Size:</label>
+        <br>
+        <input type="number" id="countNumber" name="countNumber" required min="16" max="64" value="32"
+            onclick="selectAllText(this)" onchange="validateInput(this)">
         <br>
         <br>
         <button type="button" class="beautiful-button" onclick="changePassword()">TRANSFORM Password</button>
@@ -42,35 +43,9 @@
         <h3>
             <a href="https://www.passwordmonster.com/" target="_blank"> --> YOU CAN TEST MY STRENGTH HERE <-- </a>
         </h3>
+        <br>
+        <br>
     </div>
-
-    <!-- <div>
-        <br>
-        <h3>
-            <a href="../index.html">Go to IndexPage</a>
-        </h3>
-    </div>
-    <div>
-        <h1>
-            Welcome to MaxPage
-        </h1>
-    </div>
-    <div>
-        <h2>Password Transformer :</h2>
-        <label for="keyPass">Enter a key:</label>
-        <input type="password" id="keyPass" name="keyPass" required size="20">
-        <br>
-        <br>
-        <label for="password">Enter word to convert in strong password:</label>
-        <input type="text" id="password" name="password" required size="80">
-        <br>
-        <br>
-        <button type="button" class="beautiful-button" onclick="changePassword()">TRANSFORM Password</button>
-        <p>(to see how it works, press F12 and go to console &#x1F600;)</p>
-        <h3>
-            <a href="https://www.passwordmonster.com/" target="_blank">YOU CAN TEST MY STRENGTH HERE </a>
-        </h3>
-    </div> -->
 </body>
 
 </html>

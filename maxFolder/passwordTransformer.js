@@ -71,7 +71,7 @@ function randomBySeedAndUpdateArrayV2(hashValue) {
 
 async function updateArrayV2(keyText) {
     try {
-        const iterations = 50;
+        const iterations = 128;
         arrayV2 = []
         for (let i = 0; i < iterations; i++) {
             const hash = await sha512(keyText);
@@ -81,8 +81,12 @@ async function updateArrayV2(keyText) {
     } catch (error) { console.error(error); }
 }
 
+const MINIMUM_COUNT_NUMBER = 16 // warning do not go below 16
+const MAXIMUM_COUNT_NUMBER = 64 // warning do not go up than 128
+
 function changePassword() {
 
+    var countNumberField = document.getElementById("countNumber");
     var keyField = document.getElementById("keyPass");
     let keyText = keyField.value
     var passwordField = document.getElementById("password");
@@ -96,23 +100,33 @@ function changePassword() {
         const inputString = newPassword;
 
         // CONSOLE:
-        console.log("key: ", keyField.value)
-        console.log("keyArray created according the key: ", arrayV2)
+        console.log("keyArray created according the secret-key: ", arrayV2)
         console.log("initial-password: ", passwordField.value)
         console.log("text mixed with keyArray: ", inputString)
 
         sha512(inputString)
             .then(hash => {
                 const salt = (arrayV2[newPassword.charCodeAt(0) % arrayV2.length] !== undefined) ? arrayV2[newPassword.charCodeAt(0) % arrayV2.length] : "Emp$y"
-                passwordField.value = hash.slice(0, 10) + salt + hash.slice(10, 60)
+                passwordField.value = hash.slice(0, 10) + salt + hash.slice(10, countNumberField.value - salt.length)
 
                 // CONSOLE:
                 console.log("hashresult: ", hash)
-                console.log(`introducing '${salt}' in truncate hash for final result`)
-                console.log("final result: ", passwordField.value)
+                console.log(`introducing a salt = '${salt}' in truncate hash for final result`)
                 console.log(" ")
             })
             .catch(error => console.error(error));
     })
 
+}
+
+function validateInput(input) {
+    if (input.value < MINIMUM_COUNT_NUMBER) {
+        input.value = MINIMUM_COUNT_NUMBER
+    } else if (input.value > MAXIMUM_COUNT_NUMBER) {
+        input.value = MAXIMUM_COUNT_NUMBER
+    }
+}
+
+function selectAllText(input) {
+    input.select()
 }
