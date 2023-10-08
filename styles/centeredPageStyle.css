@@ -15,27 +15,25 @@ body {
     margin: 0 auto;
 }
 
-input[type="password"] {
-    width: 50%;
+.myInput {
+    width: 60%;
     padding: 10px;
     margin-bottom: 10px;
     text-align: center;
 }
 
-input[type="text"] {
-    width: 100%;
+.myOutput {
+    width: calc(65ch + 20px);
     padding: 10px;
     margin-bottom: 10px;
     text-align: center;
 }
+
 
 @media (min-width: 500px) {
-
-    /* Adjust the breakpoint as needed */
-    input[type="text"] {
+    /* input[type="text"] {
         width: calc(65ch + 20px);
-        /* Set the width based on character count */
-    }
+    } */
 }
 
 .beautiful-button {

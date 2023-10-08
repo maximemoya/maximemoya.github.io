@@ -24,13 +24,11 @@
         <h3>Password Transformer :</h3>
         <label for="keyPass">Enter a secret-key:</label>
         <br>
-        <input type="password" id="keyPass" name="keyPass" required onclick="selectAllText(this)">
-        <br>
+        <input class="myInput" type="password" id="keyPass" name="keyPass" required onclick="selectAllText(this)">
         <br>
         <label for="password">Enter word to transform into a strong password:</label>
         <br>
-        <input type="text" id="password" name="password" required onclick="selectAllText(this)">
-        <br>
+        <input class="myInput" type="text" id="password" name="password" required onclick="selectAllText(this)">
         <br>
         <label for="countNumber">Password Size:</label>
         <br>
@@ -38,7 +36,12 @@
             onclick="selectAllText(this)" onchange="validateInput(this)">
         <br>
         <br>
-        <button type="button" class="beautiful-button" onclick="changePassword()">TRANSFORM Password</button>
+        <button type="button" class="beautiful-button" onclick="changePassword()">GENERATE Password</button>
+        <br>
+        <br>
+        <input readonly class="myOutput" type="text" id="passwordResult" name="passwordResult"
+            value="<your new strong password will be here>" onclick="selectAllText(this)">
+        <br>
         <p>(To see how it works, press F12 and go to the console &#x1F600;)</p>
         <h3>
             <a href="https://www.passwordmonster.com/" target="_blank"> --> YOU CAN TEST MY STRENGTH HERE <-- </a>

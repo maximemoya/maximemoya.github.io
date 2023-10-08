@@ -86,10 +86,11 @@ const MAXIMUM_COUNT_NUMBER = 64 // warning do not go up than 128
 
 function changePassword() {
 
-    var countNumberField = document.getElementById("countNumber");
     var keyField = document.getElementById("keyPass");
     let keyText = keyField.value
     var passwordField = document.getElementById("password");
+    var countNumberField = document.getElementById("countNumber");
+    var passwordResultField = document.getElementById("passwordResult");
 
     updateArrayV2(keyText).then(_ => {
 
@@ -107,7 +108,7 @@ function changePassword() {
         sha512(inputString)
             .then(hash => {
                 const salt = (arrayV2[newPassword.charCodeAt(0) % arrayV2.length] !== undefined) ? arrayV2[newPassword.charCodeAt(0) % arrayV2.length] : "Emp$y"
-                passwordField.value = hash.slice(0, 10) + salt + hash.slice(10, countNumberField.value - salt.length)
+                passwordResultField.value = hash.slice(0, 10) + salt + hash.slice(10, countNumberField.value - salt.length)
 
                 // CONSOLE:
                 console.log("hashresult: ", hash)
