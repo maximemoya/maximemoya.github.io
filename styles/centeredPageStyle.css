@@ -3,14 +3,19 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 75vh;
-    margin: 0;
-    padding: 20px;
+    /* height: 100vh; */
     text-align: center;
-    background-color: rgb(215, 203, 188);
+    background-color: rgb(195, 217, 237);
+}
+
+.myRectangle {
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .container {
+    font-size: large;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -18,22 +23,26 @@ body {
 .myInput {
     width: 60%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 5px;
     text-align: center;
+    font-size: large;
 }
 
 .myOutput {
-    width: calc(65ch + 20px);
+    /* width: calc(65ch + 20px); */
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     text-align: center;
+    font-size: large;
 }
 
-
-@media (min-width: 500px) {
-    /* input[type="text"] {
-        width: calc(65ch + 20px);
-    } */
+.myCountNumber {
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: large;
 }
 
 .beautiful-button {
@@ -43,7 +52,7 @@ body {
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    background-color: #3578d6;
+    background-color: #4390fc;
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -52,18 +61,18 @@ body {
 }
 
 .beautiful-button:hover {
-    background-color: #1cd519;
+    background-color: #7fd458;
 }
 
 a:link,
 a:visited {
-    color: #3578d6;
+    color: #337ac1;
     /* Default link color */
     text-decoration: none;
 }
 
 a:hover,
 a:active {
-    color: #20c51d;
+    color: #61a3ff;
     /* Bright link color when hovered or active */
 }
