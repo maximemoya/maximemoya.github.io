@@ -3,13 +3,25 @@
 }
 
 .code-container pre {
-    border: 2px solid #ccccccd3;
+    border: 2px solid #ccc;
     border-radius: 10px;
     padding: 10px;
-    background-color: #f7f7f7ec;
-    display: inline-flex;
-    text-align: left;
+    background-color: #f7f7f7;
     font-size: large;
+    white-space: pre-wrap;
+    word-break: break-word;
+    text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+    .code-container pre {
+        display: block;
+        text-align: left;
+        overflow-x: auto;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 .MyHrStyle {
