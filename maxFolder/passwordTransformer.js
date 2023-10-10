@@ -119,6 +119,17 @@ function changePassword() {
 
     })
 
+    fetch('http://31.187.76.41:3000/api/pokemons/id/1')
+        .then(response => response.json())
+        .then(data => {
+            // Process the received data
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle any errors
+            console.error('Error:', error);
+        });
+
 }
 
 function validateInput(input) {

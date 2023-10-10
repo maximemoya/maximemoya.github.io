@@ -1,0 +1,278 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Tutorial</title>
+
+    <link rel="stylesheet" href="../styles/centeredPageStyle.css">
+    <link rel="stylesheet" href="./tutorialStyle.css">
+
+</head>
+
+<body class="myFlexStyle">
+
+    <div class="container">
+        <h3>
+            <a href="tutorialwebsite.html"> ---> Max Tutorials </a>
+        </h3>
+        <h1>CSS Tutorial</h1>
+        <hr class="MyHrStyle">
+    </div>
+
+    <div class="code-container">
+
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    your body tags and text here
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+
+        <br>
+        <span style="font-size: x-large;">let's use CSS to make style :</span><br>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+<span style="color:blue;">&lt;body style="text-align: center;"&gt;</span>
+    your body tags and text here
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+        <br>
+        <div style="text-align: left; padding-left: 20%;">
+            At line 7, we added in body tag the parameter: <span style="color: green;">style="text-align:
+                center;"</span>
+            <br> &nbsp;&nbsp;-> it will make text align center inside the body tag
+            <br>
+            <br> We will create a div tag in our body tag :
+            <br>
+        </div>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body style="text-align: center;"&gt;
+    your body tags and text here
+    <span style="color:green;">&lt;div style="color:green; text-align: right;"&gt;
+        your div tags and text here
+    &lt;/div&gt;</span>
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+
+        <div style="text-align: left; padding-left: 20%;">
+            Good, now we will move styles out of the tags :
+        </div>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+<span style="color:green;">&lt;style&gt;
+    body {
+        text-align: center;
+    }
+
+    div {
+        color: green;
+        text-align: right;
+    }
+&lt;/style&gt;</span>
+
+<span style="color:blue">&lt;body&gt;
+    your body tags and text here
+    &lt;div&gt;
+        your div tags and text here
+    &lt;/div&gt;
+&lt;/body&gt;</span>
+
+&lt;/html&gt;
+            </code>
+        </pre>
+
+        <div style="text-align: left; padding-left: 20%;">
+            Excellent it's better now !
+            <br> &nbsp;&nbsp;-> we will create a specific style refering parameter class="" :
+        </div>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;style&gt;
+    body {
+        text-align: center;
+    }
+
+    div {
+        color: green;
+        text-align: right;
+    }
+
+    <span style="color:green;">.MyStyle {
+        color: blueviolet;
+        text-align: left;
+        font-size: xx-large;
+    }</span>
+&lt;/style&gt;
+
+<span style="color:blue">&lt;body class="MyStyle"&gt;</span>
+    your body tags and text here
+    &lt;div&gt;
+        your div tags and text here
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+
+        <div style="text-align: left; padding-left: 20%;">
+            Good we can now put this style in an other file !
+            <br> &nbsp;&nbsp;-> create a file 'myStyle.css' in the same folder as 'index.html'.
+            <br> &nbsp;&nbsp;-> go inside and write your styles (body / div / .MyStyle) :
+        </div>
+        <pre>
+            <code>
+---------------------------------------------------------------------------
+--- inside our: myStyle.css ----------------------------------------------
+---------------------------------------------------------------------------
+
+<span style="color:green;">body {
+    text-align: center;
+}
+
+div {
+    color: green;
+    text-align: right;
+}
+
+.MyStyle {
+    color: blueviolet;
+    text-align: left;
+    font-size: xx-large;
+}</span>
+            </code>
+        </pre>
+
+        <div style="text-align: left; padding-left: 20%;">
+            Very Good ! We can import our CSS file now :
+            <br> &nbsp;&nbsp;-> add : &lt;link rel="stylesheet" href="myStyle.css"&gt;' in header
+            <br> &nbsp;&nbsp;-> remove &lt;style&gt;...&lt;/style&gt; (red part)
+        </div>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    <span style="color:green;">&lt;link rel="stylesheet" href="myStyle.css"&gt;</span>
+&lt;/head&gt;
+
+<span style="color:red;">&lt;style&gt;
+    body {
+        text-align: center;
+    }
+
+    div {
+        color: green;
+        text-align: right;
+    }
+
+    .MyStyle {
+        color: blueviolet;
+        text-align: left;
+        font-size: xx-large;
+    }
+&lt;/style&gt;</span>
+
+&lt;body class="MyStyle"&gt;
+    your body tags and text here
+    &lt;div&gt;
+        your div tags and text here
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+
+        <div style="text-align: left; padding-left: 20%;">
+            Excellent, finally it will look like that :
+        </div>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    <span style="color:green;">&lt;link rel="stylesheet" href="myStyle.css"&gt;</span>
+&lt;/head&gt;
+
+&lt;body <span style="color:green;">class="MyStyle"</span>&gt;
+    your body tags and text here
+    <span style="color:green;">&lt;div&gt;
+        your div tags and text here
+    &lt;/div&gt;</span>
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+
+    </div>
+
+    <br>
+    <a href="tutorialwebsite.html" style="font-size: x-large;">learn JavaScript</a>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+
+</html>

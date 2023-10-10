@@ -1,0 +1,18 @@
+.code-container {
+    font-size: large;
+}
+
+.code-container pre {
+    border: 2px solid #ccccccd3;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f7f7f7ec;
+    display: inline-flex;
+    text-align: left;
+    font-size: large;
+}
+
+.MyHrStyle {
+    background-color: #333;
+    border-width: 3px;
+}
