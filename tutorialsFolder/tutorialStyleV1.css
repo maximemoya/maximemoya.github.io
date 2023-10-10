@@ -3,8 +3,8 @@
 }
 
 .code-container pre {
-    border: 2px solid #ccc;
-    border-radius: 40px;
+    border: 3px solid #ccc;
+    border-radius: 20px;
     padding: 10px;
     background-color: #f7f7f7;
     font-size: large;
@@ -18,7 +18,7 @@
         display: block;
         text-align: left;
         overflow-x: auto;
-        width: 93%;
+        width: 95%;
         margin-left: 0;
         margin-right: 0;
     }
