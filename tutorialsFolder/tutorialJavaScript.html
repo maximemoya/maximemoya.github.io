@@ -1,0 +1,247 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript Tutorial</title>
+
+    <link rel="stylesheet" href="../styles/centeredPageStyle.css">
+    <link rel="stylesheet" href="./tutorialStyleV1.css">
+
+</head>
+
+<body class="myFlexStyle">
+
+    <div class="container">
+        <h3>
+            <a href="tutorialwebsite.html"> ---> Max Tutorials </a>
+        </h3>
+        <h1>JavaScript Tutorial</h1>
+        <hr class="MyHrStyle">
+    </div>
+
+    <div class="code-container">
+
+        <!-- start code block -->
+        <br>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    your body tags and text here
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+        <!-- end code block -->
+
+        <br>
+        Let's add a label with an ID in html :
+        <br>
+
+        <!-- start code block -->
+        <br>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    <span style="color: green;">&lt;label id="labelID"&gt;text_1&lt;/label&gt;
+    &lt;br&gt;</span>
+    your body tags and text here
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+        <!-- end code block -->
+
+        <br>
+        Let's add a button in html :
+        <br>
+
+        <!-- start code block -->
+        <br>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;label id="labelID"&gt;text_1&lt;/label&gt;
+    &lt;br&gt;
+    <span style="color: green;">&lt;button type="button" onclick="buttonClicked()"&gt;button's name&lt;/button&gt;
+    &lt;br&gt;</span>
+    your body tags and text here
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+        <!-- end code block -->
+
+        <br>
+        add a script to code the function 'buttonClicked()' :
+        <br>
+
+        <!-- start code block -->
+        <br>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+
+<span style="color: green;">&lt;script&gt;
+    function buttonClicked() {
+        var labelField = document.getElementById("labelID");
+        labelField.textContent = "New Text"
+    }
+&lt;/script&gt;</span>
+
+&lt;body&gt;
+
+    &lt;label id="labelID"&gt;text_1&lt;/label&gt;
+    &lt;br&gt;
+    &lt;button type="button" onclick="buttonClicked()"&gt;button's name&lt;/button&gt;
+    &lt;br&gt;
+    your body tags and text here
+    
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+        <!-- end code block -->
+
+        <br>
+        create a file 'button.js' in same folder as 'index.html' and put 'buttonClicked()' function inside :
+        <br>
+
+        <!-- start code block -->
+        <br>
+        <pre>
+            <code>
+-----------------------------
+--- inside our: button.js ---
+-----------------------------
+<span style="color: green;">
+    function buttonClicked() {
+        var labelField = document.getElementById("labelID");
+        labelField.textContent = "New Text"
+    }</span>
+            </code>
+        </pre>
+        <!-- end code block -->
+
+        <br>
+        add in 'index.html' the import '&lt;script src="passwordTransformer.js"&gt;&lt;/script&gt;' :
+        <br>
+
+        <!-- start code block -->
+        <br>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+
+    <span style="color: green;">&lt;script src="button.js"&gt;&lt;/script&gt;</span>
+
+&lt;/head&gt;
+
+<span style="color: red;">&lt;script&gt;
+    function buttonClicked() {
+        var labelField = document.getElementById("labelID");
+        labelField.textContent = "New Text"
+    }
+&lt;/script&gt;</span>
+
+&lt;body&gt;
+
+    &lt;label id="labelID"&gt;text_1&lt;/label&gt;
+    &lt;br&gt;
+    &lt;button type="button" onclick="buttonClicked()"&gt;button's name&lt;/button&gt;
+    &lt;br&gt;
+    your body tags and text here
+    
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+        <!-- end code block -->
+
+        <br>
+        finally we have :
+        <br>
+
+        <!-- start code block -->
+        <br>
+        <pre>
+            <code>
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+
+    <span style="color: green;">&lt;script src="button.js"&gt;&lt;/script&gt;</span>
+
+&lt;/head&gt;
+
+&lt;body&gt;
+    <span style="color: green;">
+    &lt;label id="labelID"&gt;text_1&lt;/label&gt;
+    &lt;br&gt;
+    &lt;button type="button" onclick="buttonClicked()"&gt;button's name&lt;/button&gt;
+    &lt;br&gt;</span>
+    your body tags and text here
+    
+&lt;/body&gt;
+
+&lt;/html&gt;
+            </code>
+        </pre>
+        <!-- end code block -->
+
+    </div>
+
+    <br>
+    <br>
+
+</body>
+
+</html>
