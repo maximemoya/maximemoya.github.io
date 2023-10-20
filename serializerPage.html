@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Read and Write Text on Computer</title>
+    <script>
+        function saveText() {
+            var textToSave = { text: "This is the text to save.", age: 45 };
+
+            var blob = new Blob([JSON.stringify(textToSave)], { type: "text/plain" });
+
+            var downloadLink = document.createElement("a");
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = "text-file.txt";
+            downloadLink.click();
+        }
+        function handleFileSelect(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                var fileContent = event.target.result;
+                document.getElementById('fileContent').textContent = fileContent;
+            };
+
+            reader.readAsText(file);
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="saveText()">Save Text</button>
+    <input type="file" id="fileInput" onchange="handleFileSelect(event)">
+    <pre id="fileContent"></pre>
+</body>
+
+</html>

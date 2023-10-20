@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="ab.js"></script>
+</head>
+
+<script>
+    function onClickSetButton() {
+        setMaVariableStatique({ name: "John", age: 66 });
+    }
+    function onClickGetButton() {
+        var labelField = document.getElementById("inputResult");
+        var variableStatique = getMaVariableStatique();
+
+        if (labelField && variableStatique?.name && variableStatique?.age) {
+            labelField.value = `${variableStatique.name} ${variableStatique.age}`;
+        } else if (labelField) {
+            labelField.value = variableStatique;
+        }
+    }
+</script>
+
+<body>
+    <button onclick="onClickSetButton()">Set</button>
+    <br>
+    <button onclick="onClickGetButton()">Get</button>
+    <br>
+    <input readonly id="inputResult">
+    <br>
+    <a href="b.html">to B</a>
+</body>
+
+</html>

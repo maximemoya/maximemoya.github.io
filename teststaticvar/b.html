@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="ab.js"></script>
+</head>
+
+<script>
+    function onClickSetButton() {
+        setMaVariableStatique(2);
+    }
+    function onClickGetButton() {
+        var labelField = document.getElementById("inputResult");
+        labelField.value = getMaVariableStatique();
+    }
+</script>
+
+<body>
+    <button onclick="onClickSetButton()">Set</button>
+    <br>
+    <button onclick="onClickGetButton()">Get</button>
+    <br>
+    <input readonly id="inputResult">
+    <br>
+    <a href="a.html">to A</a>
+</body>
+
+</html>
