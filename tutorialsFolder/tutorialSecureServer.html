@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sécuriser son Serveur</title>
+    <style>
+        a:link,
+        a:visited {
+            color: #337ac1;
+            /* Default link color */
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active {
+            color: #61a3ff;
+            /* Bright link color when hovered or active */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        p {
+            font-size: large;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+            overflow-x: auto;
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3 style="text-align: center;">
+        <a href="tutorialwebsite.html"> ---> Max Tutorials </a>
+    </h3>
+
+    <h1>Tutoriel pour sécuriser un serveur linux</h1>
+
+    references:
+    <ul>
+        <li>
+            <a href="https://www.youtube.com/watch?v=fLTAOqnTdBA" target="_blank">Youtube: Sensity - Comment sécuriser
+                son VPS ?</a>
+        </li>
+        <br>
+        <li>
+            <a href="https://www.youtube.com/watch?v=UmbndsZFIUE" target="_blank">Youtube: Cocadmin - Sécuriser son
+                serveur comme la NSA</a>
+        </li>
+        <br>
+        <li>
+            <a href="https://media.defense.gov/2022/Jun/15/2003018261/-1/-1/0/CTR_NSA_NETWORK_INFRASTRUCTURE_SECURITY_GUIDE_20220615.PDF"
+                target="_blank">Book: CTR_NSA_NETWORK_INFRASTRUCTURE_SECURITY_GUIDE_20220615.PDF</a>
+        </li>
+    </ul>
+
+    <h2>Se connecter au serveur</h2>
+
+    <p>Écrire en commande bash:</p>
+    <pre>
+    <code>ssh -p &lt;numéro-du-port&gt; &lt;nom-d'utilisateur&gt;@&lt;adresseIP&gt;</code></pre>
+    <p>exemple :</p>
+    <pre>
+    <code>ssh -p 22 root@11.127.256.11</code></pre>
+
+    <h2>Mettre à jour son Linux</h2>
+
+    <p>Écrire :</p>
+    <pre><code>sudo apt-get update && apt-get upgrade -y</code></pre>
+    <p>ou</p>
+    <pre><code>sudo apt update
+sudo apt upgrade
+    </code></pre>
+
+    <h2>Changer le port d'accès au serveur</h2>
+    <p>Écrire :</p>
+    <pre><code>cd /</code></pre>
+    <pre><code>vi /etc/ssh/sshd_config</code></pre>
+    <p>Appuyer sur <strong>i</strong> pour passer en mode insertion.</p>
+    <p>Modifier la ligne :</p>
+    <pre><code>#Port 22</code></pre>
+    <p>En :</p>
+    <pre><code>Port &lt;le-nouveau-numéro-de-port&gt;</code></pre>
+    <p>Appuyer sur <strong>Échap</strong> pour revenir en mode sélection.</p>
+    <p>Écrire :</p>
+    <pre><code>:wq</code></pre>
+
+    <h2>Modifier le mot de passe de root</h2>
+    <p>Écrire :</p>
+    <pre><code>passwd</code></pre>
+
+    <h2>Création d'un utilisateur personnel</h2>
+    <p>Écrire :</p>
+    <pre><code>adduser &lt;nom-du-nouvel-utilisateur&gt;</code></pre>
+    <p>Écrire :</p>
+    <pre><code>usermod -aG root,sudo,adm &lt;nom-du-nouvel-utilisateur&gt;</code></pre>
+    <p>Écrire :</p>
+    <pre><code>cd /</code></pre>
+    <pre><code>/etc/init.d/ssh restart</code></pre>
+
+    <h2>Désactiver l'accès via root</h2>
+    <p>Écrire :</p>
+    <pre><code>cd /</code></pre>
+    <pre><code>vi /etc/ssh/sshd_config</code></pre>
+    <p>Appuyer sur <strong>i</strong> pour passer en mode insertion.</p>
+    <p>(Aller tout en bas du fichier pour les os Debian)</p>
+    <p>Modifier la ligne :</p>
+    <pre><code>PermitRootLogin yes</code></pre>
+    <p>En :</p>
+    <pre><code>PermitRootLogin no</code></pre>
+    <p>Appuyer sur <strong>Échap</strong> pour revenir en mode sélection.</p>
+    <p>Écrire :</p>
+    <pre><code>:wq</code></pre>
+    <p>Écrire :</p>
+    <pre><code>/etc/init.d/ssh restart</code></pre>
+
+    <h2>Installer une protection contre les bots</h2>
+    <p>Écrire :</p>
+    <pre><code>sudo apt-get install fail2ban -y</code></pre>
+    <p>Vérifier :</p>
+    <pre><code>cd /
+sudo vi /etc/fail2ban/jail.conf</code></pre>
+    <p>(Configurer le fail2ban puis <code>:wq</code>)</p>
+    <pre><code>cd /etc/fail2ban/jail.d
+ls
+vi defaults-debian.conf</code></pre>
+    <p>Enable = true</p>
+    <p>(Si elle est en false, appuyer sur <strong>i</strong> pour changer, puis <strong>Échap</strong> et
+        <code>:wq</code>)
+    </p>
+    <p>(Sinon, <code>:q</code>)</p>
+    <pre><code>cd /
+sudo service fail2ban restart</code></pre>
+
+    <h2>Installer un firewall</h2>
+    <p>Écrire :</p>
+    <pre><code>cd /
+sudo apt install ufw
+sudo ufw allow ssh
+sudo ufw allow &lt;numéro-du-port&gt;
+sudo ufw allow https
+sudo ufw enable
+sudo ufw status verbose</code></pre>
+
+    <h2>Installer un détecteur d'intrusion</h2>
+    <p>Écrire :</p>
+    <pre><code>cd /
+sudo apt install rkhunter
+cd /etc/default/
+ls
+sudo chmod 777 rkhunter
+vi rkhunter</code></pre>
+    <p>Vérifier : (Appuyer sur <strong>i</strong> pour changer, puis <strong>Échap</strong> puis <code>:wq</code>)
+    </p>
+    <pre><code>CRON_DAILY_RUN="yes"
+REPORT_EMAIL="youremail@mail.com"</code></pre>
+
+    <h2>Reboot le serveur</h2>
+    <pre><code>cd /
+sudo reboot now</code></pre>
+
+    <p>Attendre 1 minute et se reconnecter au serveur avec le nouveau port et l'utilisateur créé.</p>
+    <pre>
+        <code>ssh -p &lt;numéro-du-port&gt; &lt;nom-d'utilisateur&gt;@&lt;adresseIP&gt;</code></pre>
+    <p>exemple :</p>
+    <pre>
+        <code>ssh -p 412 toto@11.127.256.11</code></pre>
+    <br>
+
+    <h1>BRAVO!</h1>
+    <h2>C'est suffisant pour bloquer plus de 90% des malotrus.</h2>
+    <h3 style="text-align: center;">
+        <a href="tutorialwebsite.html"> ---> Max Tutorials </a>
+    </h3>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+
+</html>
