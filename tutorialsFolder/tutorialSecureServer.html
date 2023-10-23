@@ -58,7 +58,8 @@
     <script>
         function onRequestClicked() {
             console.log("click");
-            const serverUrl = 'http://31.187.76.41:3000/'; // Replace with your server's IP address and port
+            const serverUrl = 'https://31.187.76.41:3000/api/health/';
+            // const serverLocalUrl = 'https://localhost:3000/';
 
             fetch(serverUrl, {
                 method: 'GET', // HTTP method (e.g., GET, POST, PUT, DELETE)
@@ -67,7 +68,7 @@
                 }
                 // body: JSON.stringify({ key: 'value' }), // Request body data
             })
-                .then(response => response.json()) // Parse the response as JSON
+                // .then(response => response.json()) // Parse the response as JSON
                 .then(data => {
                     // Handle the response data
                     console.log(data);
