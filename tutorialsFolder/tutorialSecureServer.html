@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sécuriser son Serveur</title>
+
     <style>
         a:link,
         a:visited {
@@ -52,6 +54,25 @@
             font-size: large;
         }
     </style>
+
+    <script>
+        function onRequestClicked() {
+            console.log("click");
+            const serverUrl = 'http://31.187.76.41:3000/'; // Replace with your server's IP address and port
+            fetch(serverUrl)
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Request sent successfully!');
+                    } else {
+                        console.error('Request failed:', response.status);
+                    }
+                })
+                .catch(error => {
+                    console.error('Request error:', error);
+                });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -62,7 +83,7 @@
 
     <h1>Tutoriel pour sécuriser un serveur linux</h1>
 
-    references:
+    références:
     <ul>
         <li>
             <a href="https://www.youtube.com/watch?v=fLTAOqnTdBA" target="_blank">Youtube: Sensity - Comment sécuriser
@@ -200,6 +221,7 @@ sudo reboot now</code></pre>
     </h3>
     <br>
     <br>
+    <button onclick="onRequestClicked()">Send Request</button>
     <br>
     <br>
     <br>
