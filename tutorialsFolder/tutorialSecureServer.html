@@ -59,17 +59,35 @@
         function onRequestClicked() {
             console.log("click");
             const serverUrl = 'http://31.187.76.41:3000/'; // Replace with your server's IP address and port
-            fetch(serverUrl)
-                .then(response => {
-                    if (response.ok) {
-                        console.log('Request sent successfully!');
-                    } else {
-                        console.error('Request failed:', response.status);
-                    }
+
+            fetch(serverUrl, {
+                method: 'GET', // HTTP method (e.g., GET, POST, PUT, DELETE)
+                headers: {
+                    'Content-Type': 'application/json', // Specify the content type of the request body
+                }
+                // body: JSON.stringify({ key: 'value' }), // Request body data
+            })
+                .then(response => response.json()) // Parse the response as JSON
+                .then(data => {
+                    // Handle the response data
+                    console.log(data);
                 })
                 .catch(error => {
-                    console.error('Request error:', error);
+                    // Handle any errors
+                    console.error(error);
                 });
+
+            // fetch(serverUrl)
+            //     .then(response => {
+            //         if (response.ok) {
+            //             console.log('Request sent successfully!');
+            //         } else {
+            //             console.error('Request failed:', response.status);
+            //         }
+            //     })
+            //     .catch(error => {
+            //         console.error('Request error:', error);
+            //     });
         }
     </script>
 
