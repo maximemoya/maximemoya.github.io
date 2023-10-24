@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Serveur en HTTPS</title>
+
+    <style>
+        a:link,
+        a:visited {
+            color: #337ac1;
+            /* Default link color */
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active {
+            color: #61a3ff;
+            /* Bright link color when hovered or active */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        p {
+            font-size: large;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+            overflow-x: auto;
+            font-size: large;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h3 style="text-align: center;">
+        <a href="../tutorialwebsite.html"> ---> Max Tutorials </a>
+    </h3>
+
+    <h1>Tutoriel pour exécuter son serveur linux en https</h1>
+
+    références:
+    <ul>
+        <li>
+            <a href="https://www.youtube.com/watch?v=yhiuV6cqkNs" target="_blank">Youtube: Scale-Up SaaS - Node.js
+                deployment HTTPS Server </a>
+        </li>
+        <br>
+        <li>
+            <a href="https://github.com/saasscaleup/nodejs-ssl-server/blob/master/README.md" target="_blank">Github:
+                SaaS Scale-Up - Node.js ssl server readme</a>
+        </li>
+    </ul>
+
+    <h2>pré-requis:</h2>
+    <h3>Relier son nom de domaine (exemple: www.maximecloud.fr) à l'adresse IP du serveur (exemple: 11.111.11.11)
+    </h3>
+    <p>-> DNS/Serveurs de noms:</p>
+    <ul>
+        <li>type: A</li>
+        <li>nom: vide ou (nom d’un sous domaine)</li>
+        <li>pointe vers: IP du serveur (11.111.11.11)</li>
+        <li>TTL: 600 (secondes)</li>
+    </ul>
+    <p>(un exemple avec le sous domaine ‘max’ on obtiendra : www.max.maximecloud.fr)</p>
+
+    <h2>Se connecter au serveur</h2>
+    <p>Écrire en commande bash:</p>
+    <pre>
+    <code>ssh -p &lt;numéro-du-port&gt; &lt;nom-d'utilisateur&gt;@&lt;adresseIP&gt;</code></pre>
+    <p>exemple :</p>
+    <pre>
+    <code>ssh -p 22 root@11.127.256.11</code></pre>
+
+    <h2>Mettre à jour son Linux</h2>
+    <p>Écrire :</p>
+    <pre><code>sudo apt-get update && apt-get upgrade -y</code></pre>
+    <p>ou</p>
+    <pre><code>sudo apt update
+sudo apt upgrade</code></pre>
+
+    <h2>Installer nodejs</h2>
+    <p>référence:
+        <a href="https://github.com/nodesource/distributions#ubuntu-versions"> nodesource-distributions-linux</a>
+    </p>
+    <p>Écrire :</p>
+    <pre><code>cd /</code></pre>
+    <p>(téléchargement de Nodesource GPG key)</p>
+    <pre><code>sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg</code></pre>
+    <p>(sélection de la version nodejs à installer)</p>
+    <pre><code>NODE_MAJOR=20
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list</code></pre>
+    <p>(installation de nodejs)</p>
+    <pre><code>sudo apt-get update
+sudo apt-get install nodejs -y</code></pre>
+
+    <h3>Si besoin pour désinstaller nodejs</h3>
+    <pre><code>apt-get purge nodejs &&\
+rm -r /etc/apt/sources.list.d/nodesource.list &&\
+rm -r /etc/apt/keyrings/nodesource.gpg</code></pre>
+
+    <h2>Installer PM2 pour éxécuter des applications en parallèle</h2>
+    <p>Écrire :</p>
+    <pre><code>cd /</code></pre>
+    <p>(installation de pm2)</p>
+    <pre><code>npm install pm2@latest -g</code></pre>
+    <p>(éxécution de pm2)</p>
+    <pre><code>pm2 start &lt;folder or file.extension&gt;
+pm2 list
+pm2 delete &lt;id&gt;</code></pre>
+
+    <h2>Installer NGINX</h2>
+    <p>Écrire :</p>
+    <pre><code>cd /</code></pre>
+    <pre><code>sudo apt install nginx</code></pre>
+    <p>Modifier dans le fichier : (avec nano ou vi)</p>
+    <pre><code>sudo nano /etc/nginx/sites-available/default</code></pre>
+    <p>ou</p>
+    <pre><code>sudo vi /etc/nginx/sites-available/default</code></pre>
+    <pre>'''<br>
+        root /home/maxime/website;<br>
+        server_name maximecloud.fr www.maximecloud.fr;<br>
+        location / {
+            proxy_pass http://localhost:3000;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }<br>
+'''</pre>
+    <p>Sauvegarder et quitter (vi => :wq) (nano => ctrl+x)</p>
+    <p>Écrire :</p>
+    <p>(teste si le fichier précédement modifié est correct)</p>
+    <pre><code>sudo nginx -t</code></pre>
+    <p>(si valide, redémarrer Nginx)</p>
+    <pre><code>sudo service nginx restart</code></pre>
+
+    <h2>Ouverture des ports dans le FireWall du serveur</h2>
+    <p>Port à ouvrir : 22 / 80 / 443</p>
+
+    <h2>CertBot free ssl/tls:</h2>
+    <p>Écrire :</p>
+    <p>(installation de snap)</p>
+    <pre><code>sudo apt update
+sudo apt install snapd</code></pre>
+    <pre><code>sudo snap install core; sudo snap refresh core</code></pre>
+    <p>(installation de certbot)</p>
+    <pre><code>sudo apt remove certbot
+sudo apt install certbot python3-certbot-nginx</code></pre>
+    <pre><code>sudo ln -s /snap/bin/certbot /usr/bin/certbot</code></pre>
+    <!-- <p>Modifier dans le fichier : (avec nano ou vi)</p>
+    <pre><code>cd /</code></pre>
+    <pre><code>sudo nano /etc/nginx/sites-available/default</code></pre>
+    <p>ou</p>
+    <pre><code>sudo vi /etc/nginx/sites-available/default</code></pre>
+    <pre>'''
+    Vérifier => server_name maximecloud.fr www.maximecloud.fr;
+'''</pre>
+    <p>(vérifier le fichier et rédémarrer nginx)</p>
+    <pre><code>sudo nginx -t
+sudo systemctl reload nginx</code></pre> -->
+    <p>(exécution de CertBot pour générer des clés publique/privée et un certificat)</p>
+    <pre><code>sudo certbot --nginx -d maximecloud.fr</code></pre>
+    <p>(renouvellement automatique du certificat)</p>
+    <pre><code>sudo systemctl status snap.certbot.renew.service
+sudo certbot renew --dry-run</code></pre>
+
+    <h1>BRAVO!</h1>
+    <h2>Le serveur est maintenant digne de confiance.</h2>
+    <h3 style="text-align: center;">
+        <a href="../tutorialwebsite.html"> ---> Max Tutorials </a>
+    </h3>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+
+</html>
