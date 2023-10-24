@@ -71,10 +71,12 @@
                 // .then(response => response.json()) // Parse the response as JSON
                 .then(data => {
                     // Handle the response data
+                    alert(`${data.url} is OK`)
                     console.log(data);
                 })
                 .catch(error => {
                     // Handle any errors
+                    alert(`${data.url} is ERROR`)
                     console.error(error);
                 });
 
@@ -97,7 +99,7 @@
 <body>
 
     <h3 style="text-align: center;">
-        <a href="tutorialwebsite.html"> ---> Max Tutorials </a>
+        <a href="../tutorialwebsite.html"> ---> Max Tutorials </a>
     </h3>
 
     <h1>Tutoriel pour sécuriser un serveur linux</h1>
@@ -155,7 +157,7 @@ sudo apt upgrade
     <p>Écrire :</p>
     <pre><code>passwd</code></pre>
 
-    <h2>Création d'un utilisateur personnel</h2>
+    <h2>Créer un utilisateur personnel</h2>
     <p>Écrire :</p>
     <pre><code>adduser &lt;nom-du-nouvel-utilisateur&gt;</code></pre>
     <p>Écrire :</p>
@@ -236,11 +238,13 @@ sudo reboot now</code></pre>
     <h1>BRAVO!</h1>
     <h2>C'est suffisant pour bloquer plus de 90% des malotrus.</h2>
     <h3 style="text-align: center;">
-        <a href="tutorialwebsite.html"> ---> Max Tutorials </a>
+        <a href="../tutorialwebsite.html"> ---> Max Tutorials </a>
     </h3>
     <br>
     <br>
-    <button onclick="onRequestClicked()">Send Request</button>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button onclick="onRequestClicked()">Send test health Request to backend</button>
+    </div>
     <br>
     <br>
     <br>
